@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/react-boredapi/static/css/main.f855e6bc.css",
+    "main.js": "/react-boredapi/static/js/main.bafcdb15.js",
+    "static/js/787.c4f17fdd.chunk.js": "/react-boredapi/static/js/787.c4f17fdd.chunk.js",
+    "index.html": "/react-boredapi/index.html",
+    "main.f855e6bc.css.map": "/react-boredapi/static/css/main.f855e6bc.css.map",
+    "main.bafcdb15.js.map": "/react-boredapi/static/js/main.bafcdb15.js.map",
+    "787.c4f17fdd.chunk.js.map": "/react-boredapi/static/js/787.c4f17fdd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f855e6bc.css",
+    "static/js/main.bafcdb15.js"
+  ]
+}
