@@ -11,7 +11,7 @@ export default function Home() {
     }
     let bored = async () => {
         try {
-            let getData = await fetch(`http://www.boredapi.com/api/activity`);
+            let getData = await fetch(`https://www.boredapi.com/api/activity`);
             let data = await getData.json();
             data.selected = true;
             setListOfActivities((originalList) => [...originalList, data]);
