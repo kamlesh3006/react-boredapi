@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 
 export default function Home() {
-    const [click, setClick] = useState(0);
     const [boredData, setBoredData] = useState('');
     const [listOfActivities, setListOfActivities] = useState([]);
     let handleOnClick = (event) => {
-        if(event.selected == true)
+        if(event.selected === true)
             event.selected = false;
         else
             event.selected = true;
@@ -49,7 +48,7 @@ export default function Home() {
                 Expand
               </button>
             </div>
-            <ul className="flex flex-col list-disc justify-items-start items-start text-left my-4 mx-6 sm:mx-8 -mb-1 space-y-2.5" style={{display : activityList.selected==true?'':'none'}}>
+            <ul className="flex flex-col list-disc justify-items-start items-start text-left my-4 mx-6 sm:mx-8 -mb-1 space-y-2.5" style={{display : activityList.selected===true?'':'none'}}>
                         <li> type : {activityList.type}</li>
                         <li> participants : {activityList.participants}</li>
                         <li> price : {activityList.price}</li>
