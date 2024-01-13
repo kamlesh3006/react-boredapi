@@ -3,18 +3,21 @@ import React, { useState } from 'react';
 export default function Home() {
     const [boredData, setBoredData] = useState('');
     const [listOfActivities, setListOfActivities] = useState([]);
-    let handleOnClick = (event) => {
-        if(event.selected === true)
-            event.selected = false;
-        else
-            event.selected = true;
-    }
+    const handleOnClick = (activityList) => {
+        setListOfActivities((prevList) =>
+          prevList.map((activity) =>
+            activity === activityList
+              ? { ...activity, selected: !activity.selected }
+              : activity
+          )
+        );
+      };      
     let bored = async () => {
         try {
             let getData = await fetch(`https://www.boredapi.com/api/activity`);
             let data = await getData.json();
-            data.selected = true;
-            setListOfActivities((originalList) => [...originalList, data]);
+            data.selected = false;
+            setListOfActivities((prevList) => [...prevList, data]);
             setBoredData(data);
             console.log(listOfActivities);
         } catch(error) {
@@ -34,7 +37,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-            {listOfActivities.map((activityList, index) => {
+            {listOfActivities && listOfActivities.length > 0 && listOfActivities.map((activityList, index) => {
                 return(
                     <div key={index}>
         <div className="container mx-auto flex flex-col px-5 py-2 items-center">
@@ -44,11 +47,11 @@ export default function Home() {
                         {activityList.activity}
                     </h2>
                     
-              <button onClick={handleOnClick(activityList)} className="max-w-1/4 bg-indigo-500 border py-1 px-2 focus:outline-none hover:bg-indigo-600 rounded-lg text-lg text-white text-sm">
-                Expand
+              <button onClick={() => handleOnClick(activityList)} className="max-w-1/4 bg-indigo-500 border py-1 px-2 focus:outline-none hover:bg-indigo-600 rounded-lg text-lg text-white text-sm">
+                {activityList.selected ? 'Collapse' : 'Expand'}
               </button>
             </div>
-            <ul className="flex flex-col list-disc justify-items-start items-start text-left my-4 mx-6 sm:mx-8 -mb-1 space-y-2.5" style={{display : activityList.selected===true?'':'none'}}>
+            <ul className="flex flex-col list-disc justify-items-start items-start text-left my-4 mx-6 sm:mx-8 -mb-1 space-y-2.5" style={{display : activityList.selected?'':'none'}}>
                         <li> type : {activityList.type}</li>
                         <li> participants : {activityList.participants}</li>
                         <li> price : {activityList.price}</li>
